@@ -1,0 +1,4 @@
+interface:
+  display_name: "X Account Audit"
+  short_description: "Audit an X account and plan its growth"
+  default_prompt: "Use $audit-x-account to audit this public X account and create an evidence-based growth plan."
