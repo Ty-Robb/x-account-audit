@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>X Growth Sprint — Action Board</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --page: #05080c;
+        --panel: #08111a;
+        --panel-strong: #0b1723;
+        --line: #284156;
+        --line-strong: #3d6079;
+        --text: #f7fbff;
+        --muted: #91a4b5;
+        --cyan: #14c8f4;
+        --cyan-soft: #8be8ff;
+        --green: #27c45a;
+        --green-ink: #06130a;
+        --radius: 2.4cqw;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+        background:
+          radial-gradient(circle at 50% 0%, rgba(20, 200, 244, 0.08), transparent 34%),
+          var(--page);
+        color: var(--text);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      .preview {
+        width: min(100%, 1080px);
+      }
+
+      .preview-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 13px;
+        letter-spacing: 0.04em;
+      }
+
+      .board {
+        container-type: inline-size;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 2.1cqw;
+        padding: 5.2cqw;
+        border: 1px solid rgba(139, 232, 255, 0.18);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.012), rgba(255, 255, 255, 0)),
+          var(--panel);
+        box-shadow:
+          0 30px 90px rgba(0, 0, 0, 0.4),
+          inset 0 1px rgba(255, 255, 255, 0.025);
+      }
+
+      .board-header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: start;
+        gap: 3cqw;
+      }
+
+      .eyebrow {
+        margin: 0 0 0.7cqw;
+        color: var(--cyan);
+        font-size: 1.65cqw;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 68cqw;
+        font-size: 6.25cqw;
+        line-height: 0.98;
+        letter-spacing: -0.045em;
+      }
+
+      .handle {
+        margin: 0.25cqw 0 0;
+        padding: 0.85cqw 1.25cqw;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--cyan-soft);
+        background: rgba(20, 200, 244, 0.055);
+        font-size: 1.55cqw;
+        font-weight: 750;
+        white-space: nowrap;
+      }
+
+      .subhead {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.9cqw;
+        line-height: 1.35;
+      }
+
+      .table-shell {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: 1.7cqw;
+        background: rgba(3, 9, 14, 0.38);
+      }
+
+      table {
+        width: 100%;
+        height: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      col.when {
+        width: 18%;
+      }
+
+      col.action {
+        width: 47%;
+      }
+
+      col.owner {
+        width: 15%;
+      }
+
+      col.status {
+        width: 20%;
+      }
+
+      th,
+      td {
+        padding: 1.25cqw 1.45cqw;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        vertical-align: middle;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right: 0;
+      }
+
+      tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      th {
+        height: 7.4cqw;
+        color: var(--muted);
+        background: var(--panel-strong);
+        font-size: 1.3cqw;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-align: left;
+        text-transform: uppercase;
+      }
+
+      td {
+        font-size: 1.75cqw;
+        font-weight: 650;
+        line-height: 1.2;
+      }
+
+      td:nth-child(3),
+      td:nth-child(4) {
+        text-align: center;
+      }
+
+      .when-label {
+        color: var(--cyan);
+        font-size: 1.45cqw;
+        font-weight: 850;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .task-title {
+        display: block;
+        margin-bottom: 0.45cqw;
+        color: var(--text);
+      }
+
+      .task-output {
+        display: block;
+        color: var(--muted);
+        font-size: 1.3cqw;
+        font-weight: 560;
+      }
+
+      .owner-label {
+        color: var(--text);
+        font-size: 1.3cqw;
+        font-weight: 850;
+        letter-spacing: 0.055em;
+        text-transform: uppercase;
+      }
+
+      .status {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 8.2cqw;
+        padding: 0.7cqw 1cqw;
+        border-radius: 999px;
+        background: var(--green);
+        color: var(--green-ink);
+        font-size: 1.25cqw;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .status.done {
+        background: var(--cyan);
+        color: #031015;
+      }
+
+      .start-here {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 1.5cqw;
+        min-height: 9.5cqw;
+        padding: 1.6cqw 2cqw;
+        border: 1px solid rgba(20, 200, 244, 0.8);
+        border-radius: 1.65cqw;
+        background: rgba(20, 200, 244, 0.065);
+      }
+
+      .start-icon {
+        width: 4.6cqw;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--cyan);
+        color: #031015;
+        font-size: 2.6cqw;
+        font-weight: 900;
+      }
+
+      .start-copy strong {
+        display: block;
+        color: var(--cyan);
+        font-size: 1.4cqw;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .start-copy span {
+        display: block;
+        margin-top: 0.45cqw;
+        font-size: 2.15cqw;
+        font-weight: 800;
+      }
+
+      .duration {
+        color: var(--muted);
+        font-size: 1.55cqw;
+        font-weight: 750;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 700px) {
+        body {
+          padding: 12px;
+        }
+
+        .preview-meta {
+          font-size: 11px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="preview">
+      <div class="preview-meta" aria-hidden="true">
+        <span>HTML/CSS preview</span>
+        <span>4:5 · 1080 × 1350 target</span>
+      </div>
+
+      <article class="board" aria-labelledby="board-title">
+        <header class="board-header">
+          <div>
+            <p class="eyebrow">First sprint · qualified audience growth</p>
+            <h1 id="board-title">7-day X growth sprint</h1>
+          </div>
+          <p class="handle">@ty_auldric</p>
+        </header>
+
+        <p class="subhead">One task, one owner and one visible definition of done.</p>
+
+        <div class="table-shell">
+          <table aria-label="Seven-day X growth sprint execution board">
+            <colgroup>
+              <col class="when" />
+              <col class="action" />
+              <col class="owner" />
+              <col class="status" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col">When</th>
+                <th scope="col">Action</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="when-label">Today</span></td>
+                <td>
+                  <span class="task-title">Update bio, link and pinned post</span>
+                  <span class="task-output">Profile conversion pack supplied</span>
+                </td>
+                <td><span class="owner-label">You</span></td>
+                <td><span class="status">Ready</span></td>
+              </tr>
+              <tr>
+                <td><span class="when-label">Today</span></td>
+                <td>
+                  <span class="task-title">Prepare five post briefs</span>
+                  <span class="task-output">Angles, proof and formats included</span>
+                </td>
+                <td><span class="owner-label">Agent</span></td>
+                <td><span class="status done">Done</span></td>
+              </tr>
+              <tr>
+                <td><span class="when-label">Days 1–5</span></td>
+                <td>
+                  <span class="task-title">Publish one proof-led post</span>
+                  <span class="task-output">Use the prepared first-sprint queue</span>
+                </td>
+                <td><span class="owner-label">You</span></td>
+                <td><span class="status">Ready</span></td>
+              </tr>
+              <tr>
+                <td><span class="when-label">48h later</span></td>
+                <td>
+                  <span class="task-title">Log every comparable result</span>
+                  <span class="task-output">Impressions, actions and audience quality</span>
+                </td>
+                <td><span class="owner-label">You</span></td>
+                <td><span class="status">Ready</span></td>
+              </tr>
+              <tr>
+                <td><span class="when-label">Day 7</span></td>
+                <td>
+                  <span class="task-title">Retain, revise or stop</span>
+                  <span class="task-output">Decide from the account median</span>
+                </td>
+                <td><span class="owner-label">Joint</span></td>
+                <td><span class="status">Ready</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <section class="start-here" aria-label="Start here">
+          <div class="start-icon" aria-hidden="true">→</div>
+          <div class="start-copy">
+            <strong>Start here</strong>
+            <span>Apply the profile pack</span>
+          </div>
+          <span class="duration">15 min</span>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

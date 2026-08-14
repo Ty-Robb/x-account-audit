@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm test
+      - run: npm run validate
+      - name: Check tag and version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: test "$TAG" = "v$(cat VERSION)"
+      - name: Build release archive
+        env:
+          TAG: ${{ github.ref_name }}
+        run: tar -czf "x-account-audit-$TAG.tar.gz" README.md LICENSE VERSION CHANGELOG.md MAINTENANCE.md CONTRIBUTING.md package.json skills sources scripts examples evals test .github
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: gh release create "$TAG" "x-account-audit-$TAG.tar.gz" --generate-notes --verify-tag

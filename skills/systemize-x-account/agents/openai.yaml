@@ -1,0 +1,6 @@
+interface:
+  display_name: "X Account Repeatability"
+  short_description: "Turn winning X posts into repeatable series"
+  default_prompt: "Use $systemize-x-account to turn my strongest X patterns into a repeatable content system."
+policy:
+  allow_implicit_invocation: false

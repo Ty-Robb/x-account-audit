@@ -1,0 +1,6 @@
+interface:
+  display_name: "X Account Compounding"
+  short_description: "Scale proven X content without losing trust"
+  default_prompt: "Use $compound-x-account to build a compounding growth system for my established X account."
+policy:
+  allow_implicit_invocation: false

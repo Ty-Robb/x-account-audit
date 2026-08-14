@@ -1,0 +1,5 @@
+node_modules/
+coverage/
+source-watch.json
+source-watch.md
+*.tgz

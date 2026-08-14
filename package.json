@@ -1,0 +1,20 @@
+{
+  "name": "x-account-growth-skills",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Evidence-based AI-agent skills for growing X accounts from day zero through compounding.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "validate": "node scripts/validate-suite.mjs",
+    "check:sources": "node scripts/check-source-updates.mjs --mode algorithm"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ty-Robb/x-account-audit.git"
+  }
+}

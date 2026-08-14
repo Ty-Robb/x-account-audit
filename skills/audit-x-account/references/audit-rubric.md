@@ -2,6 +2,14 @@
 
 Use this rubric to keep audits comparable without implying false precision.
 
+## Contents
+
+1. Evidence requirements and confidence
+2. The 100-point audit score
+3. Result bands and prioritisation
+4. Growth-stage and zero-follower adaptation
+5. Comparison audits
+
 ## Evidence requirements
 
 Preferred evidence:
@@ -10,6 +18,7 @@ Preferred evidence:
 - 20–30 recent posts covering at least two weeks;
 - post type and visible engagement for each post;
 - analytics screenshots when the account owner supplies them;
+- an owner-supplied Under the Hood report when the account is eligible;
 - the intended audience and growth objective.
 
 Minimum for a total score: profile evidence and 10 classifiable recent posts. Below that threshold, use dimension ratings without a total.
@@ -54,11 +63,13 @@ Use up to 15 originals and quotes as the public proxy for the code's internal re
 
 Count replies as relationship activity, not out-of-network discovery inventory. Count quote posts as discovery inventory when the creator adds substantial original context.
 
+Classify community-only posts separately. Do not count them as broad RankAll discovery inventory, while acknowledging that the released code does not describe every Community surface.
+
 ### 4. Predicted-action potential — 25 points
 
 Judge the sample, not one exceptional post:
 
-- **0–8 share utility:** distinctive evidence, tools, frameworks, references, or language worth sending to someone.
+- **0–8 share/save utility:** distinctive evidence, tools, frameworks, references, or language worth sending or bookmarking.
 - **0–6 conversation value:** specific ideas that invite substantive replies or quotes without bait.
 - **0–6 follow intent:** a clear recurring promise that makes future posts desirable.
 - **0–5 attention quality:** clear openings, concrete information, and sufficient context to reward reading.
@@ -79,6 +90,8 @@ Coherence and variety should coexist: repeat the audience promise, not the exact
 
 Do not penalise disagreement or a distinctive voice. Penalise patterns likely to make the intended audience mute, block, report, or repeatedly dismiss the account.
 
+Also check for repeated or templated posts and replies, unsafe or misleading links, and quoted or ancestor content that may create visibility risk. Do not infer a hidden label without owner-supplied evidence.
+
 ## Result bands
 
 - **85–100 — Strong foundation:** optimise proven themes and conversion.
@@ -98,6 +111,30 @@ For each recommendation, rate:
 
 Select no more than three priorities. Prefer high-impact, high-confidence changes with low or moderate effort.
 
+### Actionability gate
+
+Reject a recommendation as incomplete when the account owner cannot tell what to do first, what should change, and how completion will be checked. Apply these minimums:
+
+| Recommendation type | Required implementation detail |
+| --- | --- |
+| Profile | Exact target surface plus replacement copy, destination, or creative direction and an acceptance check |
+| Cleanup | Named target plus `Keep`, `Change`, `Reframe`, or `Stop`; give the reason and treatment |
+| Content | No more than three pillars, actual post types, proof sources, useful formats, exclusions, and four to seven first-sprint briefs covering the recommended pillars |
+| Experiment | Hypothesis, control, changed variable, minimum useful sample, observation window, success evidence, and decision rule |
+| Measurement | Fields to capture, comparison rule, review date, guardrail, and stage decision |
+
+For the execution board, require a `Start here` task and give every task an `Agent`, `Owner`, or `Joint` owner; a `Done`, `Ready`, `Needs input`, or `Blocked` status; a deliverable; realistic effort; and a definition of done. If the agent can produce the deliverable from available evidence, require it in the report instead of assigning drafting work to the user and mark the included artifact `Done`.
+
+Do not use `delete old posts` as routine cleanup. Historical off-topic posts can remain while a coherent recent cluster develops. Recommend deletion only for a named trust, safety, accuracy, legal, or deliberate brand reason and make clear that the owner decides.
+
+## Growth-stage adaptation
+
+Select `Day zero`, `Learning`, `Repeatability`, or `Compounding` using the content playbook before prescribing cadence, formats, or experiments. Treat the stage as an operating diagnosis, not a score component.
+
+Follower count is context, not sufficient evidence of maturity. Use post history, comparable performance, repeated patterns, audience quality, and conversion evidence where available. A large but dormant or newly repositioned account may need a Learning plan; a small account can have repeatable content-market fit.
+
+When media quality is in scope, assess whether each asset adds proof or comprehension, survives the visible crop, remains legible on mobile, and includes appropriate accessibility support. Do not award points merely for attaching media.
+
 ## Zero-follower adaptation
 
 When there is no post history, do not fabricate a score. Instead deliver a launch-readiness review:
@@ -105,12 +142,13 @@ When there is no post history, do not fabricate a score. Instead deliver a launc
 1. define one audience and one recurring promise;
 2. write the profile and pinned introduction;
 3. choose three connected pillars;
-4. prepare 15 original or substantive quote posts;
-5. join relevant conversations with useful replies;
-6. measure which subjects produce impressions, substantive replies, shares, follows, and profile conversion;
-7. revise after the first 15 posts.
+4. prepare 15 stand-alone original or substantive quote posts with varied evidence and formats;
+5. follow a focused set of relevant accounts and topics to build a useful discovery environment, not as a ranking hack;
+6. join relevant conversations with specific, useful replies and pursue authentic mutual relationships without follow churn;
+7. measure results on a consistent 48-hour window, including impressions, favourites, bookmarks, substantive replies, shares, quotes, follows, and profile conversion where available;
+8. revise after the first 15 posts.
 
-Treat published cold-start logic as a sampling opportunity, not an entitlement to reach.
+Treat published cold-start logic as a small-author sampling opportunity, not a new-account entitlement to reach. State that the released eligibility rule uses follower count rather than account age and does not create candidate retrieval by itself.
 
 ## Comparison audits
 
