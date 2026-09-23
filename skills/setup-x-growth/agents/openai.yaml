@@ -1,0 +1,6 @@
+interface:
+  display_name: "Set Up X Growth Workspace"
+  short_description: "Create persistent X growth account records"
+  default_prompt: "Use $setup-x-growth to create a persistent workspace for my X account strategy and results."
+policy:
+  allow_implicit_invocation: false

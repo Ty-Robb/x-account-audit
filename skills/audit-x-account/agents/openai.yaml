@@ -1,4 +1,6 @@
 interface:
   display_name: "X Account Audit"
-  short_description: "Audit an X account and plan its growth"
-  default_prompt: "Use $audit-x-account to audit this public X account and create an evidence-based growth plan."
+  short_description: "Audit X accounts with reports and action plans"
+  default_prompt: "Use $audit-x-account to audit an X account and produce a complete evidence-led report with an execution-ready first sprint."
+policy:
+  allow_implicit_invocation: false

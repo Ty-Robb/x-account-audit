@@ -1,0 +1,1718 @@
+<!doctype html>
+<!--
+  Reusable audit-report presentation template.
+  The account facts below are an evidence-labelled worked example, not defaults.
+  Replace every example-specific fact, finding, recommendation, output, date, and link
+  from the current audit before delivering this file for another account.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A complete evidence-led X account audit report for @ty_auldric."
+    />
+    <title>X Account Audit — @ty_auldric</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --page: #05080c;
+        --page-glow: #07131d;
+        --surface: #09121b;
+        --surface-2: #0c1823;
+        --surface-3: #101f2c;
+        --line: #1e3445;
+        --line-strong: #33536a;
+        --text: #f6f9fc;
+        --muted: #91a5b6;
+        --muted-2: #6f8496;
+        --cyan: #19c8f3;
+        --cyan-soft: #a4ecff;
+        --green: #32d26f;
+        --amber: #f3b848;
+        --red: #ff766d;
+        --blue: #70a7ff;
+        --radius-sm: 10px;
+        --radius: 16px;
+        --radius-lg: 24px;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 320px;
+        margin: 0;
+        background:
+          radial-gradient(circle at 50% -15%, rgba(25, 200, 243, 0.09), transparent 31rem),
+          linear-gradient(180deg, var(--page-glow), var(--page) 36rem);
+        color: var(--text);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+      }
+
+      .skip-link {
+        position: fixed;
+        left: 16px;
+        top: -100px;
+        z-index: 30;
+        padding: 10px 14px;
+        border-radius: 8px;
+        background: var(--cyan);
+        color: #001018;
+        font-weight: 800;
+      }
+
+      .skip-link:focus {
+        top: 16px;
+      }
+
+      .shell {
+        width: min(100% - 40px, 1280px);
+        margin: 0 auto;
+        padding: 28px 0 80px;
+      }
+
+      .utility-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .utility-bar span:first-child {
+        color: var(--cyan);
+      }
+
+      .report-header {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(115deg, rgba(25, 200, 243, 0.075), transparent 45%), var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .header-main {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 32px;
+        padding: 42px 46px 34px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--cyan);
+        font-size: 0.8rem;
+        font-weight: 850;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 800px;
+        margin-bottom: 16px;
+        font-size: clamp(2.35rem, 5vw, 4.75rem);
+        line-height: 0.96;
+        letter-spacing: -0.055em;
+      }
+
+      .lede {
+        max-width: 760px;
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.8vw, 1.2rem);
+      }
+
+      .identity {
+        display: grid;
+        justify-items: end;
+        align-content: start;
+        gap: 12px;
+        min-width: 170px;
+      }
+
+      .avatar {
+        width: 72px;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line-strong);
+        border-radius: 50%;
+        background: linear-gradient(145deg, #263c50, #0a1520);
+        color: var(--text);
+        font-size: 1.4rem;
+        font-weight: 900;
+        letter-spacing: -0.04em;
+      }
+
+      .identity-name {
+        margin: 0;
+        text-align: right;
+      }
+
+      .identity-name strong {
+        display: block;
+        font-size: 1rem;
+      }
+
+      .identity-name span {
+        color: var(--cyan-soft);
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      .header-facts {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        border-top: 1px solid var(--line);
+        background: rgba(3, 9, 14, 0.34);
+      }
+
+      .fact {
+        min-width: 0;
+        padding: 19px 24px;
+        border-right: 1px solid var(--line);
+      }
+
+      .fact:last-child {
+        border-right: 0;
+      }
+
+      .fact-label {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--muted-2);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .fact-value {
+        display: block;
+        overflow-wrap: anywhere;
+        font-size: 0.94rem;
+        font-weight: 760;
+      }
+
+      .report-grid {
+        display: grid;
+        grid-template-columns: 210px minmax(0, 1fr);
+        gap: 28px;
+        margin-top: 28px;
+      }
+
+      .rail {
+        min-width: 0;
+        align-self: start;
+        position: sticky;
+        top: 20px;
+      }
+
+      .rail-card {
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(9, 18, 27, 0.9);
+      }
+
+      .rail-title {
+        margin-bottom: 10px;
+        color: var(--muted-2);
+        font-size: 0.7rem;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .rail nav {
+        display: grid;
+        gap: 3px;
+      }
+
+      .rail a {
+        padding: 8px 9px;
+        border-radius: 7px;
+        color: var(--muted);
+        font-size: 0.84rem;
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      .rail a:hover,
+      .rail a:focus-visible {
+        outline: none;
+        background: var(--surface-3);
+        color: var(--text);
+      }
+
+      .rail-note {
+        margin: 16px 0 0;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--muted-2);
+        font-size: 0.76rem;
+      }
+
+      .content {
+        min-width: 0;
+      }
+
+      .section {
+        margin-bottom: 28px;
+        scroll-margin-top: 24px;
+        padding: 30px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(9, 18, 27, 0.94);
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 20px;
+        margin-bottom: 22px;
+      }
+
+      .section-kicker {
+        margin-bottom: 6px;
+        color: var(--cyan);
+        font-size: 0.72rem;
+        font-weight: 850;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-size: clamp(1.55rem, 2.5vw, 2.25rem);
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+      }
+
+      h3 {
+        margin-bottom: 7px;
+        font-size: 1rem;
+        line-height: 1.25;
+      }
+
+      .section-note {
+        max-width: 290px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-align: right;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        width: fit-content;
+        padding: 5px 9px;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        color: var(--cyan-soft);
+        background: rgba(25, 200, 243, 0.05);
+        font-size: 0.67rem;
+        font-weight: 850;
+        letter-spacing: 0.07em;
+        line-height: 1;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .badge::before {
+        width: 6px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: currentColor;
+        content: "";
+      }
+
+      .badge.green {
+        color: var(--green);
+        border-color: rgba(50, 210, 111, 0.35);
+        background: rgba(50, 210, 111, 0.065);
+      }
+
+      .badge.amber {
+        color: var(--amber);
+        border-color: rgba(243, 184, 72, 0.35);
+        background: rgba(243, 184, 72, 0.065);
+      }
+
+      .badge.red {
+        color: var(--red);
+        border-color: rgba(255, 118, 109, 0.35);
+        background: rgba(255, 118, 109, 0.065);
+      }
+
+      .verdict {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 18px;
+        padding: 24px;
+        border: 1px solid rgba(25, 200, 243, 0.44);
+        border-radius: var(--radius);
+        background: rgba(25, 200, 243, 0.055);
+      }
+
+      .verdict-mark {
+        width: 44px;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--cyan);
+        color: #001119;
+        font-size: 1.15rem;
+        font-weight: 950;
+      }
+
+      .verdict strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 1.08rem;
+      }
+
+      .verdict p {
+        margin: 0;
+        color: #c7d5df;
+      }
+
+      .start-here {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 18px;
+        margin-top: 16px;
+        padding: 17px 20px;
+        border-radius: var(--radius-sm);
+        background: var(--surface-2);
+      }
+
+      .start-here span {
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .start-here strong {
+        display: block;
+        margin-top: 2px;
+        font-size: 0.96rem;
+      }
+
+      .start-time {
+        align-self: center;
+        color: var(--cyan) !important;
+        white-space: nowrap;
+      }
+
+      .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .stat {
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: rgba(4, 10, 15, 0.36);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.35rem;
+        line-height: 1.1;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 0.75rem;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+
+      th,
+      td {
+        padding: 13px 14px;
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+        text-align: left;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right: 0;
+      }
+
+      tbody tr:last-child td {
+        border-bottom: 0;
+      }
+
+      th {
+        color: var(--muted);
+        background: var(--surface-2);
+        font-size: 0.68rem;
+        font-weight: 850;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      td {
+        color: #d2dce4;
+        font-size: 0.82rem;
+        overflow-wrap: anywhere;
+      }
+
+      td strong {
+        color: var(--text);
+      }
+
+      .source-link {
+        color: var(--cyan-soft);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .source-link:hover,
+      .source-link:focus-visible {
+        text-decoration: underline;
+      }
+
+      .notice {
+        margin: 14px 0 0;
+        padding: 12px 14px;
+        border-left: 3px solid var(--amber);
+        border-radius: 0 8px 8px 0;
+        background: rgba(243, 184, 72, 0.05);
+        color: #c9d4dc;
+        font-size: 0.8rem;
+      }
+
+      .score-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .score-row {
+        display: grid;
+        grid-template-columns: minmax(150px, 0.8fr) 90px minmax(0, 1.8fr);
+        align-items: center;
+        gap: 14px;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: rgba(4, 10, 15, 0.32);
+      }
+
+      .score-label {
+        font-weight: 750;
+      }
+
+      .score-copy {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .finding-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .finding {
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(4, 10, 15, 0.3);
+      }
+
+      .finding-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 10px;
+      }
+
+      .finding-id {
+        color: var(--cyan);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+      }
+
+      .finding p {
+        margin-bottom: 8px;
+        color: #cbd6de;
+        font-size: 0.86rem;
+      }
+
+      .finding p:last-child {
+        margin-bottom: 0;
+      }
+
+      .finding p strong {
+        color: var(--text);
+      }
+
+      .constraint {
+        margin-top: 16px;
+        padding: 20px 22px;
+        border-left: 4px solid var(--cyan);
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        background: var(--surface-2);
+        font-size: 1rem;
+      }
+
+      .constraint strong {
+        color: var(--cyan-soft);
+      }
+
+      .decision {
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+      }
+
+      .decision.keep {
+        color: var(--green);
+      }
+
+      .decision.change {
+        color: var(--amber);
+      }
+
+      .decision.reframe {
+        color: var(--blue);
+      }
+
+      .copy-block {
+        margin-top: 16px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: #050b11;
+      }
+
+      .copy-label {
+        margin: 0 0 7px;
+        color: var(--cyan);
+        font-size: 0.68rem;
+        font-weight: 850;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .copy-value {
+        margin: 0;
+        color: var(--text);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.85rem;
+        white-space: pre-wrap;
+      }
+
+      .pillar-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .pillar {
+        display: flex;
+        flex-direction: column;
+        min-height: 260px;
+        padding: 19px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(4, 10, 15, 0.34);
+      }
+
+      .pillar-number {
+        color: var(--cyan);
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.1em;
+      }
+
+      .pillar h3 {
+        margin: 10px 0 8px;
+        font-size: 1.05rem;
+      }
+
+      .pillar p {
+        margin-bottom: 12px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .pillar ul {
+        display: grid;
+        gap: 6px;
+        margin: auto 0 0;
+        padding-left: 18px;
+        color: #c8d4dc;
+        font-size: 0.78rem;
+      }
+
+      .brief-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 20px;
+      }
+
+      .brief {
+        display: grid;
+        grid-template-columns: 42px minmax(0, 1fr) auto;
+        gap: 14px;
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-sm);
+        background: rgba(4, 10, 15, 0.3);
+      }
+
+      .brief-index {
+        width: 36px;
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 9px;
+        background: var(--surface-3);
+        color: var(--cyan);
+        font-size: 0.76rem;
+        font-weight: 900;
+      }
+
+      .brief h3 {
+        margin-bottom: 4px;
+      }
+
+      .brief p {
+        margin-bottom: 7px;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .brief-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px 12px;
+        color: #cbd6de;
+        font-size: 0.73rem;
+      }
+
+      .brief-meta strong {
+        color: var(--muted-2);
+        font-weight: 800;
+      }
+
+      .brief-format {
+        align-self: start;
+        padding: 5px 8px;
+        border-radius: 6px;
+        background: var(--surface-3);
+        color: var(--cyan-soft);
+        font-size: 0.68rem;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .outcome-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .outcome {
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(4, 10, 15, 0.34);
+      }
+
+      .outcome-id {
+        color: var(--cyan);
+        font-size: 0.74rem;
+        font-weight: 900;
+        letter-spacing: 0.09em;
+      }
+
+      .outcome h3 {
+        margin: 8px 0 10px;
+      }
+
+      .outcome p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .execution-table table {
+        min-width: 850px;
+      }
+
+      .execution-table th:nth-child(1) {
+        width: 9%;
+      }
+
+      .execution-table th:nth-child(2) {
+        width: 9%;
+      }
+
+      .execution-table th:nth-child(3) {
+        width: 24%;
+      }
+
+      .execution-table th:nth-child(4) {
+        width: 10%;
+      }
+
+      .execution-table th:nth-child(5) {
+        width: 11%;
+      }
+
+      .execution-table th:nth-child(6) {
+        width: 12%;
+      }
+
+      .execution-table th:nth-child(7) {
+        width: 25%;
+      }
+
+      .task-status {
+        display: inline-flex;
+        padding: 4px 7px;
+        border-radius: 999px;
+        font-size: 0.64rem;
+        font-weight: 900;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .task-status.done {
+        color: var(--cyan);
+        background: rgba(25, 200, 243, 0.09);
+      }
+
+      .task-status.ready {
+        color: var(--green);
+        background: rgba(50, 210, 111, 0.09);
+      }
+
+      .experiment {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 14px;
+      }
+
+      .experiment-card,
+      .measurement-card {
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(4, 10, 15, 0.34);
+      }
+
+      .experiment-card dl,
+      .measurement-card dl {
+        display: grid;
+        grid-template-columns: 110px minmax(0, 1fr);
+        gap: 10px 14px;
+        margin: 14px 0 0;
+      }
+
+      dt {
+        color: var(--muted-2);
+        font-size: 0.72rem;
+        font-weight: 850;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      dd {
+        margin: 0;
+        color: #d1dce4;
+        font-size: 0.8rem;
+      }
+
+      .ledger {
+        margin-top: 14px;
+        padding: 12px;
+        border-radius: 8px;
+        background: #03080c;
+        color: var(--cyan-soft);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 0.7rem;
+        overflow-wrap: anywhere;
+      }
+
+      .pin-draft {
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: #050b11;
+      }
+
+      .pin-draft p {
+        margin-bottom: 12px;
+        color: #e2e9ef;
+      }
+
+      .pin-draft p:last-child {
+        margin-bottom: 0;
+      }
+
+      .pin-note {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 0.76rem;
+      }
+
+      .footer {
+        padding: 18px 4px 0;
+        color: var(--muted-2);
+        font-size: 0.76rem;
+      }
+
+      .footer a {
+        color: var(--cyan-soft);
+        text-decoration: none;
+      }
+
+      @media (max-width: 980px) {
+        .report-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .rail {
+          position: static;
+        }
+
+        .rail-card {
+          max-width: 100%;
+          overflow-x: auto;
+        }
+
+        .rail nav {
+          display: flex;
+          min-width: max-content;
+        }
+
+        .rail-note {
+          display: none;
+        }
+
+        .pillar-grid,
+        .outcome-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .pillar {
+          min-height: auto;
+        }
+
+        .experiment {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .shell {
+          width: min(100% - 24px, 1280px);
+          padding-top: 14px;
+        }
+
+        .utility-bar {
+          align-items: flex-start;
+          font-size: 0.66rem;
+        }
+
+        .rail {
+          display: none;
+        }
+
+        .header-main {
+          grid-template-columns: 1fr;
+          padding: 28px 24px;
+        }
+
+        .identity {
+          grid-template-columns: auto 1fr;
+          justify-items: start;
+          align-items: center;
+          min-width: 0;
+        }
+
+        .identity-name {
+          text-align: left;
+        }
+
+        .header-facts {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .fact:nth-child(2) {
+          border-right: 0;
+        }
+
+        .fact:nth-child(-n + 2) {
+          border-bottom: 1px solid var(--line);
+        }
+
+        .section {
+          padding: 22px 18px;
+          border-radius: 18px;
+        }
+
+        .section-head {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .section-note {
+          max-width: none;
+          text-align: left;
+        }
+
+        .verdict {
+          grid-template-columns: 1fr;
+        }
+
+        .start-here {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .stat-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .score-row {
+          grid-template-columns: 1fr auto;
+        }
+
+        .score-copy {
+          grid-column: 1 / -1;
+        }
+
+        .brief {
+          grid-template-columns: 36px minmax(0, 1fr);
+        }
+
+        .brief-format {
+          grid-column: 2;
+          justify-self: start;
+        }
+
+        .experiment-card dl,
+        .measurement-card dl {
+          grid-template-columns: 1fr;
+          gap: 4px;
+        }
+
+        dd {
+          margin-bottom: 8px;
+        }
+      }
+
+      @media print {
+        :root {
+          color-scheme: light;
+        }
+
+        body {
+          background: white;
+          color: #111827;
+        }
+
+        .shell {
+          width: 100%;
+          padding: 0;
+        }
+
+        .rail,
+        .utility-bar {
+          display: none;
+        }
+
+        .report-grid {
+          display: block;
+        }
+
+        .report-header,
+        .section {
+          break-inside: avoid;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#summary">Skip to report</a>
+
+    <div class="shell">
+      <div class="utility-bar" aria-hidden="true">
+        <span>audit-x-account · report preview</span>
+        <span>Public evidence captured 14 Aug 2026</span>
+      </div>
+
+      <header class="report-header">
+        <div class="header-main">
+          <div>
+            <p class="eyebrow">Qualified audience growth audit</p>
+            <h1>@ty_auldric</h1>
+            <p class="lede">
+              A decision-ready assessment of the profile, current public signal, content direction,
+              and the first sprint needed to turn scattered activity into a recognisable promise.
+            </p>
+          </div>
+
+          <div class="identity" aria-label="Account identity">
+            <div class="avatar" aria-hidden="true">TR</div>
+            <p class="identity-name">
+              <strong>Tyrone Robb</strong>
+              <span>@ty_auldric</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="header-facts" aria-label="Report facts">
+          <div class="fact">
+            <span class="fact-label">Objective</span>
+            <span class="fact-value">Qualified audience growth</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Stage</span>
+            <span class="fact-value">Learning · provisional</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Audit score</span>
+            <span class="fact-value">Not scored</span>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Confidence</span>
+            <span class="fact-value">Low · five public posts</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="report-grid">
+        <aside class="rail" aria-label="Report navigation">
+          <div class="rail-card">
+            <p class="rail-title">In this report</p>
+            <nav>
+              <a href="#summary">01 · Verdict</a>
+              <a href="#evidence">02 · Evidence</a>
+              <a href="#assessment">03 · Assessment</a>
+              <a href="#findings">04 · Findings</a>
+              <a href="#cleanup">05 · Cleanup</a>
+              <a href="#content">06 · Content</a>
+              <a href="#plan">07 · Action plan</a>
+              <a href="#outputs">08 · Outputs</a>
+              <a href="#measurement">09 · Measurement</a>
+            </nav>
+            <p class="rail-note">
+              Observations and recommendations are labelled separately. Missing analytics are not
+              replaced with invented values.
+            </p>
+          </div>
+        </aside>
+
+        <main class="content" id="summary">
+          <section class="section" aria-labelledby="verdict-title">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">01 · Executive verdict</p>
+                <h2 id="verdict-title">The account has expertise. The route to follow is fragmented.</h2>
+              </div>
+              <span class="badge amber">Action required</span>
+            </div>
+
+            <div class="verdict">
+              <div class="verdict-mark" aria-hidden="true">→</div>
+              <div>
+                <strong>Primary constraint</strong>
+                <p>
+                  The profile promises strategy-first AI systems for founders and lean teams, but
+                  the visible content sample splits between that expertise, creative-challenge
+                  participation, and a consumer complaint. A relevant stranger cannot yet predict
+                  one repeatable reason to follow or one next step to take.
+                </p>
+              </div>
+            </div>
+
+            <div class="start-here">
+              <div>
+                <span>Start here · Owner</span>
+                <strong>Replace the generic profile path with the supplied bio, banner message, direct repository link, and pinned introduction.</strong>
+              </div>
+              <span class="start-time">25 minutes</span>
+            </div>
+
+            <div class="stat-grid" aria-label="Public account snapshot">
+              <div class="stat"><strong>1,084</strong><span>public post count</span></div>
+              <div class="stat"><strong>116</strong><span>followers observed</span></div>
+              <div class="stat"><strong>71</strong><span>following observed</span></div>
+              <div class="stat"><strong>5</strong><span>posts visible publicly</span></div>
+            </div>
+          </section>
+
+          <section class="section" id="evidence" aria-labelledby="evidence-title">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">02 · Evidence coverage</p>
+                <h2 id="evidence-title">What the assessment can—and cannot—support</h2>
+              </div>
+              <p class="section-note">Captured from the signed-out public profile on 14 Aug 2026.</p>
+            </div>
+
+            <div class="table-wrap">
+              <table aria-label="Audit evidence coverage">
+                <thead>
+                  <tr>
+                    <th scope="col">Evidence</th>
+                    <th scope="col">Observed</th>
+                    <th scope="col">What it supports</th>
+                    <th scope="col">Label</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Profile</strong></td>
+                    <td>Bio names 15+ years in marketing, strategy-first AI systems, founders and lean teams. Link resolves to the general GitHub profile.</td>
+                    <td>Positioning and conversion-path assessment</td>
+                    <td><span class="badge">Observed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Visual identity</strong></td>
+                    <td>Recognisable headshot; dark branded banner with a small mark but no readable audience promise.</td>
+                    <td>Human recognition and profile-conversion review</td>
+                    <td><span class="badge">Observed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Post sample</strong></td>
+                    <td>Five signed-out posts: one X algorithm article, one consumer-service observation, and three One Minute Briefs interactions or entries.</td>
+                    <td>Directional topic and format diagnosis only</td>
+                    <td><span class="badge">Observed</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Public metrics</strong></td>
+                    <td>Visible views range from 40 to 80 across different ages and formats.</td>
+                    <td>No reliable performance comparison</td>
+                    <td><span class="badge amber">Limited</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Owner analytics</strong></td>
+                    <td>Not supplied.</td>
+                    <td>Impressions, bookmarks, profile visits, follows and audience quality remain unknown.</td>
+                    <td><span class="badge red">Unknown</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="notice">
+              No total score is issued because the public surface exposes fewer than the rubric’s
+              minimum ten classifiable posts. The stage and findings are provisional, not a claim
+              about hidden ranking labels or account health.
+            </p>
+          </section>
+
+          <section class="section" id="assessment" aria-labelledby="assessment-title">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">03 · Assessment</p>
+                <h2 id="assessment-title">Five dimensions, without false precision</h2>
+              </div>
+              <span class="badge amber">Not scored</span>
+            </div>
+
+            <div class="score-list">
+              <div class="score-row">
+                <span class="score-label">Profile conversion</span>
+                <span class="badge amber">Mixed</span>
+                <span class="score-copy">Audience and expertise are named, but the banner and generic GitHub destination do not complete a clear conversion path.</span>
+              </div>
+              <div class="score-row">
+                <span class="score-label">Topic coherence</span>
+                <span class="badge red">Weak</span>
+                <span class="score-copy">The five-post window contains three distinct audience contexts; only the X algorithm article directly matches the stated expertise.</span>
+              </div>
+              <div class="score-row">
+                <span class="score-label">Discovery inventory</span>
+                <span class="badge amber">Mixed</span>
+                <span class="score-copy">The long-form article is stand-alone discovery inventory; short tagged entries and thanks replies rely on external context.</span>
+              </div>
+              <div class="score-row">
+                <span class="score-label">Predicted-action potential</span>
+                <span class="badge green">Promising</span>
+                <span class="score-copy">Code-backed analysis and open-source tooling can create save, share and follow utility when published as a recognisable series.</span>
+              </div>
+              <div class="score-row">
+                <span class="score-label">Trust and clarity risk</span>
+                <span class="badge amber">Mixed</span>
+                <span class="score-copy">Experience claims are specific, but “Building…” and the next destination are truncated or underspecified on the public surface.</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" id="findings" aria-labelledby="findings-title">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">04 · Findings</p>
+                <h2 id="findings-title">The evidence behind the recommendation</h2>
+              </div>
+              <p class="section-note">Three findings only—the ones that materially change the plan.</p>
+            </div>
+
+            <div class="finding-list">
+              <article class="finding">
+                <div class="finding-top">
+                  <span class="finding-id">F1 · CONVERSION</span>
+                  <span class="badge">Observed</span>
+                </div>
+                <h3>The profile names a useful audience but does not finish the promise.</h3>
+                <p><strong>Evidence:</strong> the bio states the experience, work and audience, while the banner carries no readable proposition and the link points to a general GitHub profile.</p>
+                <p><strong>Interpretation:</strong> a qualified visitor must discover the actual tool or proof unaided.</p>
+                <p><strong>Limitation:</strong> profile visits and follow conversion were not supplied.</p>
+              </article>
+
+              <article class="finding">
+                <div class="finding-top">
+                  <span class="finding-id">F2 · RETRIEVAL + HUMAN EXPECTATION</span>
+                  <span class="badge amber">Observed + inference</span>
+                </div>
+                <h3>The recent public sample does not repeat one audience promise.</h3>
+                <p><strong>Evidence:</strong> the visible sample alternates between source-code analysis, a Crocs service complaint, creative-challenge posts, and a reply.</p>
+                <p><strong>Interpretation:</strong> both machine topic matching and the human follow decision receive a less predictable signal than a connected three-pillar system would provide.</p>
+                <p><strong>Limitation:</strong> five posts cannot establish the composition of the complete recent timeline.</p>
+              </article>
+
+              <article class="finding">
+                <div class="finding-top">
+                  <span class="finding-id">F3 · PRODUCTION</span>
+                  <span class="badge amber">Practice</span>
+                </div>
+                <h3>The strongest strategic asset is currently a one-off, not a repeatable format.</h3>
+                <p><strong>Evidence:</strong> the article about growing from zero connects source evidence, a specific audience problem, and a reusable open-source project.</p>
+                <p><strong>Interpretation:</strong> turning the same proof into teardowns, build notes and experiments can create more discovery inventory without changing the core promise.</p>
+                <p><strong>Limitation:</strong> public views alone do not show saves, qualified follows, or downstream repository use.</p>
+              </article>
+            </div>
+
+            <p class="constraint">
+              <strong>Primary constraint:</strong> the profile promise and recent visible content do
+              not yet form one repeatable route from useful discovery to a credible next step for
+              founders and lean teams.
+            </p>
+          </section>
+
+          <section class="section" id="cleanup" aria-labelledby="cleanup-title">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">05 · Account cleanup</p>
+                <h2 id="cleanup-title">What stays, what changes, and exactly how</h2>
+              </div>
+              <p class="section-note">No mass deletion. Historical posts stay unless there is a specific trust or safety reason.</p>
+            </div>
+
+            <div class="table-wrap">
+              <table aria-label="Account cleanup register">
+                <thead>
+                  <tr>
+                    <th scope="col">Target</th>
+                    <th scope="col">Decision</th>
+                    <th scope="col">Exact implementation</th>
+                    <th scope="col">Done when</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Avatar</strong></td>
+                    <td><span class="decision keep">Keep</span></td>
+                    <td>Retain the current professional headshot; it is recognisable at small size.</td>
+                    <td>No action required.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Bio</strong></td>
+                    <td><span class="decision change">Change</span></td>
+                    <td>Use the supplied 128-character bio below so the promise and building-in-public angle fit before truncation.</td>
+                    <td>Audience, work and recurring proof are visible without expanding the bio.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Banner</strong></td>
+                    <td><span class="decision change">Change</span></td>
+                    <td>Add one readable promise: “Strategy-first AI systems for lean teams.” Keep the existing dark brand treatment and mark.</td>
+                    <td>The line survives mobile crop and can be read at profile size.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Profile link</strong></td>
+                    <td><span class="decision change">Change</span></td>
+                    <td>Link directly to github.com/Ty-Robb/x-account-audit during this launch cycle.</td>
+                    <td>One click opens the repository, README and install command.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Pinned post</strong></td>
+                    <td><span class="decision change">Create</span></td>
+                    <td>Publish and pin the ready-to-use introduction in section 08 with the repository link and one screenshot of the audit output.</td>
+                    <td>A new visitor sees the problem, proof, output and next action in one post.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Creative-challenge posts</strong></td>
+                    <td><span class="decision reframe">Reframe</span></td>
+                    <td>Keep participating, but add the brief, decision and marketing lesson when posting to the main timeline.</td>
+                    <td>The post provides value without requiring knowledge of the challenge account.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Consumer observations</strong></td>
+                    <td><span class="decision reframe">Reframe</span></td>
+                    <td>Only publish when the experience becomes a concrete lesson about service design, brand trust or automation failure.</td>
+                    <td>The reader can connect the observation to the account’s stated expertise.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="copy-block">
+              <p class="copy-label">Ready-to-use bio</p>
+              <p class="copy-value">15+ years in marketing. I build strategy-first AI systems for founders and lean teams. Building open marketing tools in public ↓</p>
+            </div>
+
+            <div class="copy-block">
+              <p class="copy-label">Banner direction</p>
+              <p class="copy-value">Strategy-first AI systems for lean teams.
+Open tools · Practical teardowns · Built in public</p>
+            </div>
+          </section>
+
+          <section class="section" id="content" aria-labelledby="content-title">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">06 · Content direction</p>
+                <h2 id="content-title">Repeat the promise, vary the evidence</h2>
+              </div>
+              <p class="section-note">Three connected pillars. Five first-sprint briefs. No generic calendar.</p>
+            </div>
+
+            <div class="pillar-grid">
+              <article class="pillar">
+                <span class="pillar-number">PILLAR 01</span>
+                <h3>Open marketing systems</h3>
+                <p>Show founders and lean teams how strategy becomes an executable AI-assisted workflow.</p>
+                <ul>
+                  <li>Build notes and before/after artifacts</li>
+                  <li>Repository decisions and operating models</li>
+                  <li>Proof: files, screenshots, diffs, tests</li>
+                </ul>
+              </article>
+
+              <article class="pillar">
+                <span class="pillar-number">PILLAR 02</span>
+                <h3>Evidence-led X growth</h3>
+                <p>Translate public recommendation code and account evidence into practical tests.</p>
+                <ul>
+                  <li>Myth versus source evidence</li>
+                  <li>Public teardowns and experiments</li>
+                  <li>Proof: code citations, samples, ledgers</li>
+                </ul>
+              </article>
+
+              <article class="pillar">
+                <span class="pillar-number">PILLAR 03</span>
+                <h3>Marketing judgment</h3>
+                <p>Use 15+ years of experience to explain the decisions an agent cannot make alone.</p>
+                <ul>
+                  <li>Brief critiques and decision frameworks</li>
+                  <li>Creative work reframed as lessons</li>
+                  <li>Proof: examples, trade-offs, outcomes</li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="brief-list" aria-label="First sprint content briefs">
+              <article class="brief">
+                <span class="brief-index">01</span>
+                <div>
+                  <h3>What the X algorithm does—and does not—give a new account</h3>
+                  <p>Turn the article into a compact myth-versus-code breakdown for founders starting from zero.</p>
+                  <div class="brief-meta"><span><strong>Proof:</strong> exact public code paths</span><span><strong>Action:</strong> read the full article</span><span><strong>Measure:</strong> +48h</span></div>
+                </div>
+                <span class="brief-format">4:5 carousel</span>
+              </article>
+
+              <article class="brief">
+                <span class="brief-index">02</span>
+                <div>
+                  <h3>I turned a vague X audit into eight executable outputs</h3>
+                  <p>Show the old abstract recommendation beside the cleanup row, exact copy, owner, effort and done condition.</p>
+                  <div class="brief-meta"><span><strong>Proof:</strong> report screenshot</span><span><strong>Action:</strong> inspect the repository</span><span><strong>Measure:</strong> +48h</span></div>
+                </div>
+                <span class="brief-format">Before / after</span>
+              </article>
+
+              <article class="brief">
+                <span class="brief-index">03</span>
+                <div>
+                  <h3>The profile test I use before writing another post</h3>
+                  <p>Teach the stranger test: audience, recurring value, proof, and one next step—then apply it to this profile.</p>
+                  <div class="brief-meta"><span><strong>Proof:</strong> current vs proposed profile</span><span><strong>Action:</strong> run the four checks</span><span><strong>Measure:</strong> +48h</span></div>
+                </div>
+                <span class="brief-format">Text + image</span>
+              </article>
+
+              <article class="brief">
+                <span class="brief-index">04</span>
+                <div>
+                  <h3>AI can draft the strategy. It cannot choose what your business is willing to prove.</h3>
+                  <p>Explain three judgment calls from building the audit skill and the source evidence each required.</p>
+                  <div class="brief-meta"><span><strong>Proof:</strong> three repository decisions</span><span><strong>Action:</strong> reply with the hardest judgment call</span><span><strong>Measure:</strong> +48h</span></div>
+                </div>
+                <span class="brief-format">Text post</span>
+              </article>
+
+              <article class="brief">
+                <span class="brief-index">05</span>
+                <div>
+                  <h3>One Minute Brief, three marketing decisions</h3>
+                  <p>Use one creative entry to explain the audience insight, chosen constraint and why the final execution earns attention.</p>
+                  <div class="brief-meta"><span><strong>Proof:</strong> original brief and asset</span><span><strong>Action:</strong> quote the strongest alternative</span><span><strong>Measure:</strong> +48h</span></div>
+                </div>
+                <span class="brief-format">Annotated image</span>
+              </article>
+            </div>
+          </section>
+
+          <section class="section" id="plan" aria-labelledby="plan-title">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">07 · Prioritised action plan</p>
+                <h2 id="plan-title">Three outcomes, one controlled first sprint</h2>
+              </div>
+              <span class="badge green">Ready to execute</span>
+            </div>
+
+            <div class="outcome-grid">
+              <article class="outcome">
+                <span class="outcome-id">A1 · CONVERT</span>
+                <h3>Make the profile path coherent</h3>
+                <p>Addresses F1. High impact, high confidence, low effort. Complete today.</p>
+              </article>
+              <article class="outcome">
+                <span class="outcome-id">A2 · PUBLISH</span>
+                <h3>Create one recognisable content set</h3>
+                <p>Addresses F2–F3. Publish the five supplied briefs across seven days.</p>
+              </article>
+              <article class="outcome">
+                <span class="outcome-id">A3 · LEARN</span>
+                <h3>Decide from comparable evidence</h3>
+                <p>Addresses the evidence gap. Review every post at the same 48-hour window.</p>
+              </article>
+            </div>
+
+            <div class="table-wrap execution-table">
+              <table aria-label="First sprint execution board">
+                <thead>
+                  <tr>
+                    <th scope="col">When</th>
+                    <th scope="col">Action</th>
+                    <th scope="col">Exact task</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Effort</th>
+                    <th scope="col">Done when</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Now</strong></td>
+                    <td>A1</td>
+                    <td>Use the bio, banner message, direct link and pinned draft in this report.</td>
+                    <td>Owner</td>
+                    <td><span class="task-status ready">Ready</span></td>
+                    <td>25 min</td>
+                    <td>The live profile passes the audience, promise, proof and next-step test.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Today</strong></td>
+                    <td>A2</td>
+                    <td>Prepare the proof assets required by briefs 01–05.</td>
+                    <td>Joint</td>
+                    <td><span class="task-status ready">Ready</span></td>
+                    <td>45 min</td>
+                    <td>Each brief has its named screenshot, source, example or annotated asset.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Days 1–7</strong></td>
+                    <td>A2</td>
+                    <td>Publish all five proof-led posts without changing the audience or core promise.</td>
+                    <td>Owner</td>
+                    <td><span class="task-status ready">Ready</span></td>
+                    <td>20 min/post</td>
+                    <td>Five stand-alone posts are live and logged with pillar and format.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>+48h each</strong></td>
+                    <td>A3</td>
+                    <td>Record comparable public and owner analytics in the supplied ledger.</td>
+                    <td>Owner</td>
+                    <td><span class="task-status ready">Ready</span></td>
+                    <td>5 min/post</td>
+                    <td>Every row contains the same observation window and audience-quality note.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Day 9</strong></td>
+                    <td>A3</td>
+                    <td>Classify each mechanism Retain, Revise, Stop or Unresolved against the account median.</td>
+                    <td>Joint</td>
+                    <td><span class="task-status ready">Ready</span></td>
+                    <td>30 min</td>
+                    <td>One written decision and next test exists for each post.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="section" id="outputs" aria-labelledby="outputs-title">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">08 · Ready-to-use outputs</p>
+                <h2 id="outputs-title">The work the agent can finish is already finished</h2>
+              </div>
+              <span class="badge green">Included</span>
+            </div>
+
+            <article class="pin-draft" aria-label="Pinned post draft">
+              <p class="copy-label">Pinned post draft</p>
+              <p>I read X’s public recommendation code because “post consistently” was not a useful growth strategy.</p>
+              <p>Then I turned what the code can actually support into a free, open-source account audit skill.</p>
+              <p>It assesses your profile and public posts, separates evidence from inference, identifies one primary constraint, and gives you:</p>
+              <p>— exact cleanup decisions<br />— three connected content pillars<br />— first-sprint post briefs<br />— an owned action board<br />— a measurement and review rule</p>
+              <p>No hidden-score claims. No promise of a new-account boost. No “engage more” filler.</p>
+              <p>Install it or inspect the method:<br />github.com/Ty-Robb/x-account-audit</p>
+            </article>
+            <p class="pin-note">Media job: attach one legible 4:5 screenshot of the report showing the verdict, cleanup decisions and first action. Add alt text describing those three elements.</p>
+
+            <div class="copy-block">
+              <p class="copy-label">Repository destination</p>
+              <p class="copy-value">https://github.com/Ty-Robb/x-account-audit</p>
+            </div>
+          </section>
+
+          <section class="section" id="measurement" aria-labelledby="measurement-title">
+            <div class="section-head">
+              <div>
+                <p class="section-kicker">09 · Measurement and handoff</p>
+                <h2 id="measurement-title">Learn before increasing volume</h2>
+              </div>
+              <span class="badge">Learning stage</span>
+            </div>
+
+            <div class="experiment">
+              <article class="experiment-card">
+                <h3>Experiment card · first coherent set</h3>
+                <dl>
+                  <dt>Hypothesis</dt>
+                  <dd>A connected set of evidence-led posts will attract more qualified actions than the current mixed public sample.</dd>
+                  <dt>Control</dt>
+                  <dd>Current five-post public sample, treated only as a directional baseline.</dd>
+                  <dt>Variable</dt>
+                  <dd>Topic and proof coherence. Keep the target audience and observation window fixed.</dd>
+                  <dt>Sample</dt>
+                  <dd>Five posts in seven days across the three defined pillars.</dd>
+                  <dt>Window</dt>
+                  <dd>Record every post exactly 48 hours after publication.</dd>
+                  <dt>Decision rule</dt>
+                  <dd>Retain mechanisms that beat the new set’s median and produce a qualified reply, save, share, profile visit or follow. Revise unclear posts. Stop repeated mechanisms that underperform twice.</dd>
+                </dl>
+              </article>
+
+              <article class="measurement-card">
+                <h3>Review gate</h3>
+                <dl>
+                  <dt>Review date</dt>
+                  <dd>Day 9 after the first post is published.</dd>
+                  <dt>Primary outcome</dt>
+                  <dd>Qualified audience actions, not follower count alone.</dd>
+                  <dt>Guardrail</dt>
+                  <dd>No bait, irrelevant tagging, follow churn or unsupported algorithm claims.</dd>
+                  <dt>Stage exit</dt>
+                  <dd>Move toward Repeatability only after one mechanism works across at least three comparable executions.</dd>
+                </dl>
+                <div class="ledger">published_at,post_url,pillar,post_type,format,proof,views_48h,likes_48h,replies_48h,bookmarks_48h,shares_48h,profile_visits_48h,follows_48h,qualified_signal,decision</div>
+              </article>
+            </div>
+
+            <p class="notice">
+              Recommended handoff: use <strong>$learn-x-account</strong> after A1 is live to draft
+              the five posts, maintain the ledger, and run the Day 9 decision review. Add owner
+              analytics as an addendum; do not silently rewrite this dated assessment.
+            </p>
+          </section>
+
+          <footer class="footer">
+            Based on public profile evidence and X’s published recommendation code, interpreted as
+            public defaults rather than guarantees. Generated with
+            <a href="https://github.com/Ty-Robb/x-account-audit">audit-x-account</a>, an open-source
+            skill by <a href="https://x.com/ty_auldric">Tyrone Robb</a>.
+          </footer>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
